@@ -70,6 +70,34 @@ function generateExcerpt(content: string, maxLength: number = 150): string {
   return excerpt || '暂无摘要'
 }
 
+function normalizeDate(value: any): string {
+  if (value instanceof Date) {
+    const t = value.getTime()
+    if (!Number.isNaN(t)) {
+      return value.toISOString()
+    }
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim()
+    if (trimmed) {
+      const d = new Date(trimmed)
+      if (!Number.isNaN(d.getTime())) {
+        return d.toISOString()
+      }
+    }
+  }
+
+  if (typeof value === 'number') {
+    const d = new Date(value)
+    if (!Number.isNaN(d.getTime())) {
+      return d.toISOString()
+    }
+  }
+
+  return new Date().toISOString()
+}
+
 export interface Post {
   slug: string
   title: string
@@ -98,7 +126,7 @@ export function getAllPosts(): Post[] {
       return {
         slug,
         title: data.title || slug,
-        date: data.date || new Date().toISOString(),
+        date: normalizeDate(data.date),
         excerpt: data.excerpt || generateExcerpt(content, 120),
         content,
         tags: data.tags || [],
@@ -131,7 +159,7 @@ export function getPostBySlug(slug: string): Post | null {
     return {
       slug,
       title: data.title || slug,
-      date: data.date || new Date().toISOString(),
+      date: normalizeDate(data.date),
       excerpt: data.excerpt || '',
       content,
       tags: data.tags || [],

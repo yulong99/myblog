@@ -65,6 +65,11 @@ export default function PostPage({ params }: PageProps) {
     notFound()
   }
 
+  const parsedDate = new Date(post.date)
+  const displayDate = Number.isNaN(parsedDate.getTime())
+    ? '日期未知'
+    : format(parsedDate, 'yyyy年MM月dd日', { locale: zhCN })
+
   const htmlContent = marked.parse(post.content) as string
 
   return (
@@ -87,7 +92,7 @@ export default function PostPage({ params }: PageProps) {
         <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5" />
-            <span>{format(new Date(post.date), 'yyyy年MM月dd日', { locale: zhCN })}</span>
+            <span>{displayDate}</span>
           </div>
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />

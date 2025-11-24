@@ -26,56 +26,63 @@ export default function Home() {
       <section>
         <h2 className="text-3xl font-bold mb-8 text-gray-900">最新文章</h2>
         <div className="space-y-8">
-          {posts.map((post) => (
-            <article 
-              key={post.slug}
-              className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100"
-            >
-              <div className="p-6">
-                <Link href={`/posts/${post.slug}`}>
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900 hover:text-primary-600 transition-colors">
-                    {post.title}
-                  </h3>
-                </Link>
-                
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{format(new Date(post.date), 'yyyy年MM月dd日', { locale: zhCN })}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{post.readTime}</span>
-                  </div>
-                </div>
+          {posts.map((post) => {
+            const parsedDate = new Date(post.date)
+            const displayDate = Number.isNaN(parsedDate.getTime())
+              ? '日期未知'
+              : format(parsedDate, 'yyyy年MM月dd日', { locale: zhCN })
 
-                <p className="text-gray-600 mb-4 line-clamp-2 text-justify">
-                  {post.excerpt}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {post.tags.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Link 
-                    href={`/posts/${post.slug}`}
-                    className="flex items-center gap-1 text-primary-600 hover:text-primary-700 font-medium group"
-                  >
-                    阅读更多
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            return (
+              <article 
+                key={post.slug}
+                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100"
+              >
+                <div className="p-6">
+                  <Link href={`/posts/${post.slug}`}>
+                    <h3 className="text-2xl font-bold mb-3 text-gray-900 hover:text-primary-600 transition-colors">
+                      {post.title}
+                    </h3>
                   </Link>
+                  
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{displayDate}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 mb-4 line-clamp-2 text-justify">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-2">
+                      {post.tags.map((tag) => (
+                        <span 
+                          key={tag}
+                          className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <Link 
+                      href={`/posts/${post.slug}`}
+                      className="flex items-center gap-1 text-primary-600 hover:text-primary-700 font-medium group"
+                    >
+                      阅读更多
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
       </section>
     </div>
