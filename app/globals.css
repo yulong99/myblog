@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Highlight.js 代码高亮主题 */
+@import 'highlight.js/styles/atom-one-dark.min.css';
+
+/* KaTeX 数学公式样式 */
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --foreground-rgb: 30, 41, 59;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+  --accent-color: 59, 130, 246;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .prose-custom {
+    @apply text-slate-700 leading-relaxed;
+    font-size: 1.0625rem;
+    max-width: 75ch;
+  }
+  
+  /* 标题样式 */
+  .prose-custom h1 {
+    @apply text-4xl font-bold mb-6 mt-12 text-slate-900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  .prose-custom h2 {
+    @apply text-3xl font-bold mb-4 mt-10 text-slate-900;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgb(226, 232, 240);
+  }
+  
+  .prose-custom h3 {
+    @apply text-2xl font-semibold mb-3 mt-8 text-slate-800;
+    line-height: 1.4;
+  }
+  
+  .prose-custom h4 {
+    @apply text-xl font-semibold mb-2 mt-6 text-slate-800;
+  }
+  
+  /* 段落和文本 */
+  .prose-custom p {
+    @apply mb-6 text-slate-700;
+    text-align: justify;
+  }
+  
+  .prose-custom strong {
+    @apply font-semibold text-slate-900;
+  }
+  
+  .prose-custom em {
+    @apply italic text-slate-800;
+  }
+  
+  /* 链接 */
+  .prose-custom a {
+    @apply text-blue-600 hover:text-blue-700 font-medium;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(147, 197, 253);
+    transition: all 0.2s;
+  }
+  
+  .prose-custom a:hover {
+    border-bottom-color: rgb(59, 130, 246);
+  }
+  
+  /* 列表 */
+  .prose-custom ul, .prose-custom ol {
+    @apply mb-6 ml-6 space-y-2;
+  }
+  
+  .prose-custom li {
+    @apply text-slate-700;
+    padding-left: 0.5rem;
+  }
+  
+  .prose-custom ul li {
+    list-style-type: disc;
+  }
+  
+  .prose-custom ol li {
+    list-style-type: decimal;
+  }
+  
+  /* 行内代码 */
+  .prose-custom code {
+    @apply bg-slate-100 text-pink-600 px-2 py-0.5 rounded font-mono;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+  
+  /* 代码块 */
+  .prose-custom pre {
+    @apply rounded-xl overflow-hidden mb-6 shadow-lg;
+    background: #282c34 !important;
+  }
+  
+  .prose-custom pre code {
+    @apply bg-transparent text-gray-100 p-0;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    display: block;
+    padding: 1.5rem !important;
+  }
+  
+  /* 引用块 */
+  .prose-custom blockquote {
+    @apply border-l-4 border-blue-500 pl-6 pr-4 py-2 my-6;
+    background: rgb(239, 246, 255);
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  
+  .prose-custom blockquote p {
+    @apply mb-2 text-slate-600 italic;
+  }
+  
+  /* 图片 */
+  .prose-custom img {
+    @apply rounded-xl shadow-lg my-8 w-full;
+    max-height: 600px;
+    object-fit: contain;
+  }
+  
+  /* 视频 */
+  .prose-custom video {
+    @apply rounded-xl shadow-lg my-8 w-full;
+  }
+  
+  /* 水平分割线 */
+  .prose-custom hr {
+    @apply my-12 border-slate-200;
+  }
+  
+  /* 表格 */
+  .prose-custom table {
+    @apply w-full mb-6 border-collapse;
+  }
+  
+  .prose-custom th {
+    @apply bg-slate-100 px-4 py-3 text-left font-semibold text-slate-900 border-b-2 border-slate-300;
+  }
+  
+  .prose-custom td {
+    @apply px-4 py-3 border-b border-slate-200;
+  }
+  
+  .prose-custom tr:hover {
+    @apply bg-slate-50;
+  }
+  
+  /* KaTeX 数学公式 */
+  .prose-custom .katex {
+    font-size: 1.1em;
+  }
+  
+  .prose-custom .katex-display {
+    @apply my-6 overflow-x-auto overflow-y-hidden;
+  }
+}

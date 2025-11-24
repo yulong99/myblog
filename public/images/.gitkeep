@@ -1,0 +1,3 @@
+# 图片文件夹
+
+将你的图片文件放在这个文件夹下，然后在 Markdown 中使用 `/images/your-image.jpg` 引用。
