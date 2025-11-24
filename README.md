@@ -182,10 +182,10 @@ theme: {
 
 ## 🚀 部署
 
-### 部署到 Vercel（推荐）
+### 部署到 Vercel
 
 1. 将代码推送到 GitHub
-2. 在 [Vercel](https://vercel.com) 导入你的仓库
+2. 在 [Vercel](https://vercel.com) 导入仓库
 3. Vercel 会自动检测 Next.js 项目并完成部署
 
 ### 构建生产版本
@@ -205,8 +205,8 @@ MIT License
 
 ## 📧 联系方式
 
-- Email: your@email.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: wyl18211988@163.com
+- GitHub: [@yulong99](https://github.com/yulong99)
 
 ---
 
