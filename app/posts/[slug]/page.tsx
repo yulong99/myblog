@@ -40,7 +40,7 @@ renderer.code = function(code: string, language?: string) {
       return `<pre><code>${code}</code></pre>`
     }
   }
-  return originalCodeRenderer(code, language || '')
+  return originalCodeRenderer(code, language || '', false)
 }
 
 marked.use({ renderer })
