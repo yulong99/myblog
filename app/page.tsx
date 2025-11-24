@@ -3,6 +3,7 @@ import { getAllPosts } from '@/lib/posts'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import { format } from 'date-fns'
 import zhCN from 'date-fns/locale/zh-CN'
+import AnniversaryCounter from '@/components/AnniversaryCounter'
 
 export default function Home() {
   const posts = getAllPosts()
@@ -18,6 +19,8 @@ export default function Home() {
           论文阅读 · 算法研究 · 技术思考
         </p>
       </section>
+
+      <AnniversaryCounter />
 
       {/* Blog Posts List */}
       <section>

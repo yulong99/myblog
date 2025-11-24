@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
+const PINNED_SLUGS = ['welcome']
 
 /**
  * 生成智能摘要，过滤掉图片、视频、代码块等内容
@@ -105,8 +106,18 @@ export function getAllPosts(): Post[] {
       }
     })
 
-  // 按日期排序
+  // 按日期排序，并将特定文章置顶
   return allPosts.sort((a, b) => {
+    const aPinnedIndex = PINNED_SLUGS.indexOf(a.slug)
+    const bPinnedIndex = PINNED_SLUGS.indexOf(b.slug)
+
+    const aPinned = aPinnedIndex !== -1
+    const bPinned = bPinnedIndex !== -1
+
+    if (aPinned && !bPinned) return -1
+    if (!aPinned && bPinned) return 1
+    if (aPinned && bPinned) return aPinnedIndex - bPinnedIndex
+
     return new Date(b.date).getTime() - new Date(a.date).getTime()
   })
 }
