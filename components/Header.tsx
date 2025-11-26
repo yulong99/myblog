@@ -31,7 +31,7 @@ export default function Header() {
             </Link>
             
             <a 
-              href="https://github.com" 
+              href="https://github.com/yulong99" 
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors"
