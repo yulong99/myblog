@@ -55,7 +55,7 @@ export default function AboutPage() {
             邮件联系
           </a>
           <a 
-            href="https://github.com"
+            href="https://github.com/yulong99"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors font-medium"

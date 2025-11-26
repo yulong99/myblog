@@ -8,6 +8,7 @@ import { marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
 import katex from 'katex'
+import PostActions from '@/components/PostActions'
 
 // 配置代码高亮
 marked.use(markedHighlight({
@@ -124,9 +125,7 @@ export default function PostPage({ params }: PageProps) {
 
       {/* Share Section */}
       <div className="mt-12 pt-8 border-t border-gray-200">
-        <p className="text-center text-gray-600">
-          如果你喜欢这篇文章，欢迎分享给更多人
-        </p>
+        <PostActions slug={post.slug} title={post.title} />
       </div>
     </article>
   )
