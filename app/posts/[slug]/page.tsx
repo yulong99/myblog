@@ -8,6 +8,7 @@ import { marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
 import katex from 'katex'
+import markedKatex from 'marked-katex-extension'
 import PostActions from '@/components/PostActions'
 
 // 配置代码高亮
@@ -25,23 +26,39 @@ marked.setOptions({
   gfm: true,
 })
 
-// 自定义渲染器支持 KaTeX
-const renderer = new marked.Renderer()
-const originalCodeRenderer = renderer.code.bind(renderer)
+// 启用 KaTeX 扩展，支持 $...$ 和 $$...$$ 形式的公式
+marked.use(
+  markedKatex({
+    throwOnError: false,
+    output: 'html',
+  })
+)
 
-renderer.code = function(code: string, language?: string) {
-  // 检查是否是数学公式块
-  if (language === 'math' || language === 'latex') {
+// 自定义渲染器支持 ```math/```latex 代码块使用 KaTeX
+const renderer = new marked.Renderer()
+const originalCodeRenderer = renderer.code.bind(renderer) as (
+  code: string,
+  infostring: string | undefined,
+  escaped: boolean
+) => string
+
+renderer.code = function (
+  code: string,
+  infostring: string | undefined,
+  escaped: boolean
+): string {
+  const lang = (infostring || '').trim()
+  if (lang === 'math' || lang === 'latex') {
     try {
       return katex.renderToString(code, {
         displayMode: true,
-        throwOnError: false
+        throwOnError: false,
       })
-    } catch (e) {
+    } catch {
       return `<pre><code>${code}</code></pre>`
     }
   }
-  return originalCodeRenderer(code, language || '', false)
+  return originalCodeRenderer(code, infostring, escaped)
 }
 
 marked.use({ renderer })
