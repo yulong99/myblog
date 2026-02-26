@@ -34,10 +34,10 @@ export default function SplashScreen({ children }: SplashScreenProps) {
             onClick={() => setVisible(false)}
           >
             <p className="text-4xl md:text-6xl font-extrabold mb-5 tracking-wide splash-gradient-text">
-              我爱你，王新婷！
+              欢迎来到我的博客！
             </p>
             <p className="text-base md:text-lg splash-subtitle">
-              为媳妇儿特别制作的开屏礼花彩蛋，欢迎进入我们的线上小家~
+              坚持！
             </p>
           </div>
         </div>
