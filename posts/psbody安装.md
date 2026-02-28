@@ -1,3 +1,10 @@
+---
+title: psbody安装
+date: 2026-02-23
+excerpt: psbody
+tags: ['实验', '环境配置', '安装步骤']
+readTime: 10分钟
+---
 1、git clone https://github.com/MPI-IS/mesh.git
 
 2、cd mesh/
